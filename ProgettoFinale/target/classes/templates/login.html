@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+    <link rel="stylesheet" href="css/login_register.css" />
+  </head>
+  <body>
+    
+    <div class="header">
+      <div class="top-logo">
+        <a href="/" class="fill-div">
+          <h1 class="logo-container">
+            <img src="images/logo.png" class="logo" />
+            <span class="logo-text">MYSTUFF</span>
+          </h1>
+        </a>
+      </div>
+    </div>
+
+    <main class="login-page-main">
+      <div class="link">
+        <h1>Benvenuti su MYSTUFF!</h1>
+        <p class="link"
+          >Non hai ancora un account? <a href="/register">Registrati!</a></p
+        >
+      </div>
+
+      <div class="background-dark center-form">
+        <div class="login">
+          <div class="center">
+            <h3 style="color: rgb(255, 255, 255);">Login</h3>
+          </div>
+          <form class="login-form" action="/userLogin" method="post">
+            <div>
+              <label for="l-username" class="label-size">Username</label>
+              <input
+                type="text"
+                id="l-username"
+                name="l-username"
+                class="input-design"
+              />
+              <!-- required maxlength="45"
+                required minlength="3" -->
+            </div>
+            <div>
+              <label for="l-password" class="label-size">Password</label>
+              <input
+                type="password"
+                name="l-password"
+                id="l-password"
+                class="input-design"
+              />
+              <!-- required maxlength="45"
+                required minlength="3" -->
+            </div>
+            <div th:if="${error}" th:text="${error}" style="color:red"></div>
+            <div class="submit-container">
+              <input style="color: rgb(0, 0, 0);" type="submit" value="Login" class="submit-button" />
+            </div>
+          </form>
+          <!-- <div class="center">
+            <a href="./sign_up.html" class="link"
+              >Don't have an account yet? <u>Sign up</u></a
+            >
+          </div> -->
+        </div>
+      </div>
+    </main>
+  </body>
+</html>

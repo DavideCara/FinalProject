@@ -1,0 +1,130 @@
+@import url("https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap");
+
+@import url('https://fonts.googleapis.com/css2?family=Bree+Serif&display=swap');
+
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Raleway", sans-serif;
+  background: linear-gradient(
+    0deg,
+    rgb(255, 177, 7) 0%,
+    rgb(255, 217, 0) 50%,
+    rgb(255, 222, 112) 100%
+  );
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-attachment: fixed;
+  height: 100%;
+}
+
+
+
+.header {
+  position: fixed;
+  width: 100%;
+  background: linear-gradient(
+    90deg,
+    rgb(42, 43, 48) 0%,
+    rgb(23, 24, 24) 50%,
+    rgb(42, 43, 48) 100%
+  );
+  text-shadow: -2px -2px 0px rgb(255, 255, 255), 2px 2px 0px rgb(255, 255, 255), -2px 2px 0px rgb(255, 255, 255), 2px -2px 0px rgb(255, 255, 255), 0px 0px 20px rgb(255, 255, 255);
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0px 0px 25px -5px #000000;
+  z-index: 1000;
+}
+
+a.fill-div {
+  display: block;
+  height: 100%;
+  width: 100%;
+  color: inherit;
+  text-decoration: none;
+}
+
+.logo {
+  float: center;
+  width: 120px;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo-text {
+  margin-left: 5px;
+  margin-top: -8px;
+  font-size: 70px;
+  font-weight: bolder;
+  font-family: "Bree Serif", serif;
+}
+
+.top-logo {
+  width: 0px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.center-form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+}
+
+.registered {
+  padding-top: 38vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-button-div {
+  padding-top: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-button {
+  top: 40px;
+	background-color:#f3b93b;
+	border-radius:10px;
+	display:inline-block;
+	cursor:pointer;
+	color:#000000;
+	font-family:Arial;
+	font-size:30px;
+	font-weight:bold;
+	padding:10px 25px;
+	text-decoration:none;
+  margin-left: -12.5px;
+  margin-top: -30px;
+  animation: glow 1s infinite alternate;
+}
+
+.login-button:hover {
+	background-color:#ffa600;
+  color:#ffffff;
+}
+
+@keyframes glow {
+  from {
+    box-shadow: 0px 0px 30px 0px #ff7b00;
+  }
+  to {
+    box-shadow: 0px 0px 5px 0px #ff6600;
+  }
+}

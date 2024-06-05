@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Home</title>
+  <link rel="stylesheet" href="../css/profile.css" />
+  <script src="../js/profile.js" defer></script>
+</head>
+
+<body>
+    <div class="header">
+      <div class="top-logo">
+        <a href="/profile" class="fill-div">
+          <h1 class="logo-container">
+            <img src="../images/logo.png" class="logo" />
+            <span class="logo-text">MYSTUFF</span>
+          </h1>
+        </a>
+      </div>
+    
+      <div class="logout-button-div">
+        <a href="/logout" class="logout-button">Logout</a>
+      </div>
+    </div>
+
+ 
+
+    <div class="userDetails">
+      <div th:data-logged="${isLoggedUser}" id="loggedUserCheck"></div>
+      <div class="uno">
+        Le collezioni di
+        <div class="username" th:text="${username}"></div>
+      </div>
+    </div> 
+
+    <div class="items-container">
+      <div class="toHide">
+        <div class="item-card" id="crea">
+          <h2>Crea la tua collezione</h2>
+          <img src="../images/missing_image.png">
+          <!-- Trigger/Open The Modal -->
+          <div class="button-container"> <!-- Contenitore aggiuntivo per il pulsante -->
+            <button id="insBtn">Crea una nuova collezione!</button>
+          </div>
+        </div><!-- end of insItem-card -->
+      </div>
+
+      <div class="item-card" th:each="collection : ${collections}">
+
+        <h2 th:text="${collection.name}"></h2>
+        <img th:if="${collection.image != null}" th:src="${collection.image}"
+          onerror="this.src='../images/missing_image.png'">
+        <img th:if="${collection.image == null}" th:src="@{../images/missing_image.png}">
+        <div class="button-container">
+          <p>
+            <a th:href="|/itemsOfCollection?collectionId=${collection.id}|">
+              <button class="details-button">Dettagli</button>
+            </a>
+          </p>
+          <p class="toHide">
+            <button id="editBtn" th:data-id="${collection.id}" th:data-name="${collection.name}"
+              th:data-image="${collection.image}" th:data-isWishlist="${collection.isWishlist}"
+              th:data-isPublic="${collection.isPublic}" onclick="editCollection(this)">Modifica
+            </button>
+          </p>
+        </div>
+        <div class="button-center">
+          <p class="toHide">
+            <button id="deleteBtn" th:data-deleteid="${collection.id}" onclick="deleteCollection(this)">
+              Elimina
+            </button>
+          </p>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Modal di inserimento -->
+    <div id="insModal" class="modal">
+      <!-- Modal content -->
+      <div class="modal-content">
+        <div class="modal-header">
+          <span class="insClose">x</span>
+          <h2>Crea una nuova collezione!</h2>
+        </div>
+        <div class="modal-body" id="inserisci">
+          <form action="/addCollection" method="POST">
+            <div class="spacing-label">
+              <label for="name">Nome Collezione:</label>
+              <input type="text" id="name" name="name" required><br>
+            </div>
+            <div class="spacing-label">
+              <label for="image">URL Immagine:</label>
+              <input type="text" id="image" name="image"><br>
+            </div>
+            <div class="spacing-label">
+              <label for="isWishlist">Wishlist:</label>
+              <input type="checkbox" id="isWishlist" name="isWishlist"><br>
+            </div>
+            <div class="spacing-label">
+              <label for="isPublic">Pubblico:</label>
+              <input type="checkbox" id="isPublic" name="isPublic"><br>
+            </div>
+            <div class="button-container"> <!-- Contenitore aggiuntivo per il pulsante -->
+              <button class="add-button" type="submit">Crea</button>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer"></div>
+      </div>
+    </div>
+    <!-- Fine Modal di inserimento -->
+
+    <!-- >Modal di modifica -->
+    <div id="editModal" class="modal">
+      <!-- Modal content -->
+      <div class="modal-content">
+        <div class="modal-header">
+          <span class="editClose">x</span>
+          <h2>Modifica collezione:</h2>
+        </div>
+        <div class="modal-body">
+          <form id="collectionForm" method="post" action="/updateCollection">
+            <input type="hidden" id="idCollection" name="id">
+              <div class="spacing-label">
+                <label for="name">Nome:</label>
+                <input type="text" id="nameEdit" name="name" required>
+              </div>
+              <div  class="spacing-label">
+                <label for="image">URL Immagine:</label>
+                <input type="text" id="imageEdit" name="image">
+              </div>
+              <div  class="spacing-label">
+                <label for="isWishlist">Wishlist:</label>
+                <input type="checkbox" id="isWishlistEdit" name="isWishlist">
+              </div>
+              <div  class="spacing-label">
+                <label for="isPublic">Pubblica:</label>
+                <input type="checkbox" id="isPublicEdit" name="isPublic">
+              </div>
+            <div>
+              <button type="submit" class="edit-buttone">Modifica</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <!--Fine modal di modifica-->
+
+    <!--Modal di eliminazione-->
+    <div id="deleteModal" class="modal">
+      <!-- Modal content -->
+      <div class="modal-content">
+        <div class="modal-header">
+          <span class="deleteClose">x</span>
+          <h2 style="text-align: center;">Stai per eliminare la collezione!</h2>
+        </div>
+        <div class="deleteButton">
+          <div class="modal-body" id="deleteColl">
+            <form id="deleteForm" method="post" action="/delete-Collection">
+              <input type="hidden" id="collectionId" name="collectionId">
+              <button type="submit">Elimina</button>
+          </div>
+        </div>
+        <div class="modal-footer"></div>
+      </div>
+    </div>
+    <!--Fine modal di eliminazione-->
+
+ 
+  <!-- <footer></footer> -->
+  <!--<script src="js/profile.js"></script>-->
+</body>
+
+</html>

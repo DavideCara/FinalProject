@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign up</title>
+    <link rel="stylesheet" href="css/login_register.css" />
+  </head>
+  <body>
+    <div class="header">
+      <div class="top-logo">
+        <a href="/" class="fill-div">
+          <h1 class="logo-container">
+            <img src="images/logo.png" class="logo" />
+            <span class="logo-text">MYSTUFF</span>
+          </h1>
+        </a>
+      </div>
+    </div>
+    <main class="login-page-main">
+      <!-- sinistra -->
+      <div class="link">
+        <h1>Benvenuti su MYSTUFF!</h1>
+        <p class="link">
+          Hai già un account? <a href="/login">Login!</a>
+        </p>
+      </div>
+
+      <!-- destra -->
+      <div class="background-dark center-form">
+        <div class="register">
+          <div class="center">
+            <h3 style="color: white;">Registrati</h3>
+          </div>
+          <form class="sign_up-form" action="/addUser" name="registration" th:object="${user}" method="post">
+            <div>
+              <label for="email" class="label-size">Email</label>
+              <input
+                type="text"
+                name="email"
+                id="r-email"
+                class="input-design"
+                minlength="5"
+                required
+                th:field="${user.email}"
+              />
+              <div id="check-email"></div>
+            </div>
+            <div>
+              <label for="r-username" class="label-size">Username</label>
+              <input
+                type="text"
+                name="r-username"
+                id="r-username"
+                class="input-design"
+                minlength="3"
+                required
+                th:field="${user.username}"
+              />
+            </div>
+            <div>
+              <div class="flex-checkmark">
+                <label for="r-password1" class="label-size">Crea password</label>
+                <!-- <span class="cross">&#10004</span> -->
+              </div>
+              <input
+                type="password"
+                name="r-password1"
+                id="r-password1"
+                class="input-design"
+                required
+                th:field="${user.password}"
+              />
+            </div>
+            <div>
+              <label for="r-password2" class="label-size">Conferma password</label>
+              <input
+                type="password"
+                name="r-password2"
+                id="r-password2"
+                required
+                class="input-design"
+              />
+            </div>
+            <div class="error-message" id="password-error" style="color: red; display: none;">Le password non corrispondono</div>
+            <div class="submit-container">
+              <input style="color: rgb(0, 0, 0);"
+                type="submit"
+                value="Registrati"
+                class="submit-button"
+                id="r_button"
+              />
+            </div>
+          </form>
+          <script>
+            document.querySelector('.sign_up-form').addEventListener('submit', function (event) {
+                var password1 = document.getElementById('r-password1').value;
+                var password2 = document.getElementById('r-password2').value;
+                var errorMessage = document.getElementById('password-error');
+    
+                if (password1 !== password2) {
+                    event.preventDefault(); // Prevent form submission
+                    errorMessage.style.display = 'block'; // Show error message
+                } else {
+                    errorMessage.style.display = 'none'; // Hide error message
+                }
+            });
+        </script>
+        </div>
+      </div>
+    </main>
+    <script type="module" src="js/auth/register.js"></script>
+  </body>
+</html>

@@ -1,0 +1,310 @@
+@import url("https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap");
+
+@import url('https://fonts.googleapis.com/css2?family=Limelight&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Bree+Serif&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=REM:ital,wght@0,100..900;1,100..900&display=swap');
+
+
+/* html {
+  font-family: "Raleway", sans-serif;
+  background: linear-gradient(
+    0deg,
+    rgb(42, 43, 48) 0%,
+    rgb(37, 37, 39) 50%,
+    rgb(23, 24, 24) 100%
+  );
+  height: 100%;
+} */
+
+.object-item button {
+  background-color: #484846;
+  position: center;
+  border: none;
+  border-radius: 10px;
+  padding: 5px 20px;
+  font-family: "REM";
+  font-size: 18px;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  
+}
+
+body {
+  font-family: "Raleway", sans-serif;
+  height: 100%;
+  background: linear-gradient(
+    0deg,
+    rgb(42, 43, 48) 0%,
+    rgb(37, 37, 39) 50%,
+    rgb(23, 24, 24) 100%
+  );
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+  height: 100%;
+}
+
+.header {
+  margin-left: 8px;
+  position: fixed;
+  width: 100%;
+  /* background-color: #f8b841; */
+  background: linear-gradient(
+    90deg,
+    rgb(23, 24, 24) 0%,
+    rgb(42, 43, 48) 50%,
+    rgb(23, 24, 24) 100%
+  );
+  text-shadow: -2px -2px 0px rgb(255, 255, 255), 2px 2px 0px rgb(255, 255, 255), -2px 2px 0px rgb(255, 255, 255), 2px -2px 0px rgb(255, 255, 255), 0px 0px 20px rgb(255, 255, 255);
+  height: 100px;
+  display: flex;
+  flex-direction: row;   
+  align-items: center;
+  box-shadow: 0px 0px 25px -5px #000000;
+  z-index: 1000;
+}
+
+a.fill-div {
+  display: block;
+  height: 100%;
+  width: 100%;
+  color: inherit;
+  text-decoration: none;
+}
+
+.logo {
+  float: left;
+  width: 120px;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+}
+
+.logo-text {
+  margin-left: 5px;
+  margin-top: -8px;
+  font-size: 70px;
+  font-weight: bolder;
+  font-family: "Bree Serif", serif;
+}
+
+.top-logo {
+  display: flex;
+  align-items: center;
+}
+
+.returnToCollection-div, .logout-button-div{
+  display: flex;
+  justify-content: flex-end;
+  text-shadow: none;
+  margin-left: auto; 
+  margin-right: 50px;
+}
+
+.collection-button {
+  margin-right: -650px;
+  box-shadow: 0px 0px 10px 0px #ff9e0c;
+  background-color:#ffca68;
+  border-radius:10px;
+  display:inline-block;
+  cursor:pointer;
+  color:#000000;
+  font-family:Arial;
+  font-size:20px;
+  font-weight:bold;
+  padding:10px 25px;
+  text-decoration:none;
+}
+
+.logout-button {
+  box-shadow: 0px 0px 10px 0px #ff9e0c;
+  background-color:#ffca68;
+  border-radius:10px;
+  display:inline-block;
+  cursor:pointer;
+  color:#000000;
+  font-family:Arial;
+  font-size:20px;
+  font-weight:bold;
+  padding:10px 25px;
+  text-decoration:none;
+}
+
+.collection-button:hover, .logout-button:hover {
+  background-color:#ffd723;
+  box-shadow: 0px 0px 30px 0px #ffd414;
+}
+
+.logout-button:active, .collection-button:active{
+  background-color:#fff6ce;
+}
+
+
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+  position: relative;
+  background-color: #fefefe;
+  margin: auto;
+  padding: 0;
+  border: 1px solid #888;
+  width: 80%;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+  -webkit-animation-name: animatetop;
+  -webkit-animation-duration: 0.4s;
+  animation-name: animatetop;
+  animation-duration: 0.4s
+}
+
+/* Add Animation */
+@-webkit-keyframes animatetop {
+  from {top:-300px; opacity:0} 
+  to {top:0; opacity:1}
+}
+
+@keyframes animatetop {
+  from {top:-300px; opacity:0}
+  to {top:0; opacity:1}
+}
+
+/* The Close Button */
+.close, .closeEdit, .closeDelete {
+  color: white;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.closeEdit:hover, .closeDelete:hover,
+.close:focus, .closeEdit:focus, .closeDelete:focus{
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.modal-header {
+  padding: 10px 0;
+  background-color: #ffb107;
+  color: white;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.modal-body {padding: 2px 16px;}
+
+.modal-footer {
+  padding: 10px 0;
+  text-align: right;
+  background-color: #ffb107;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+.object-list {
+  margin-top: 100px;
+  list-style-type: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;    
+  justify-content: center;
+  align-items: center; 
+}
+
+.object-title {
+  font-size: 1.2em;
+  margin: 0 0 5px 0;
+  /* flex-direction: column; */
+}
+
+.object-item {
+  display: flex;
+  align-items: center;
+  border: 1px solid transparent;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  width: 400px; /* Larghezza della casella */
+}
+
+.object-item title {
+    font-size: 1.2em;
+    margin: 0;
+    justify-content: center;
+    display: inline;
+}
+
+.object-item img {
+    width: 100px; /* Dimensione standard dell'immagine */
+    height: auto;
+    margin-right: 20px;
+
+}
+
+.defaultImg {
+  width: 100px; /* Dimensione standard dell'immagine */
+  height: auto;
+  margin-right: 20px;
+  position: relative;
+  top: 0;
+  left: 100%;
+}
+
+.detais-container {
+    display: flex;
+    flex-direction: column;
+    flex: 1; /* Flessibilità per riempire lo spazio rimanente */
+}
+
+.object-details {
+    display: flex;
+    flex-direction: column;
+    flex: 1; /* Flessibilità per riempire lo spazio rimanente */
+}
+
+.object-title {
+    font-size: 1.2em;
+    margin: 0 0 5px 0;
+}
+
+.object-description {
+    margin: 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

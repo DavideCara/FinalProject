@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="it" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Item</title>
+  <link rel="stylesheet" href="css/item.css" />
+  <script src="../js/item.js" defer></script>
+
+</head>
+
+<body>
+  <div class="header">
+    <div class="top-logo">
+      <a href="/" class="fill-div">
+        <h1 class="logo-container">
+          <img src="images/logo.png" class="logo" />
+          <span class="logo-text">MYSTUFF</span>
+        </h1>
+      </a>
+    </div>
+
+
+    <div class="returnToCollection-div">
+      <a href="/returnToCollection" class="collection-button">Collections</a>
+    </div>
+
+    <div class="logout-button-div">
+      <a href="/logout" class="logout-button">Logout</a>
+    </div>
+
+  </div>
+  <br>
+  
+  <br>
+  <br>
+  <br>
+
+  <ul class="object-list">
+    <li class="object-item">
+      <img src="images/missing_image.png">
+
+      <!-- Trigger/Open The Modal -->
+      <button id="myBtnAdd">Aggiungi un oggetto!</button>
+      <!-- The Modal -->
+    </li>
+
+    <div id="myModal" class="modal">
+
+      <!-- Modal content -->
+      <div class="modal-content">
+
+        <div class="modal-header">
+          <span class="close">&times;</span>
+          <h2>Aggiungi oggetto:</h2>
+        </div>
+
+        <div class="modal-body">
+          <form id="itemForm" method="post" action="/addItem">
+            <!--<input type="hidden" id="collectionId" name="collectionId" th:text="${collectionId}">-->
+            <label for="name">Nome:</label>
+            <input type="text" id="name" name="name" required>
+            <label for="description">Descrizione:</label>
+            <textarea id="description" name="description"></textarea>
+            <label for="image">Immagine:</label>
+            <input type="text" id="image" name="image">
+            <label for="number">Numero:</label>
+            <input type="number" id="number" name="number" required>
+            <label for="date">Data:</label>
+            <input type="date" id="date" name="date" required>
+            <button type="submit" id="addButton">Aggiungi</button>
+          </form>
+        </div>
+
+      </div>
+
+    </div>
+
+
+
+
+    <li class="object-item" th:each="item:${items}">
+      <img th:if="${item.image != null}" th:src="${item.image}"
+        onerror="this.src='../images/missing_image.png'">
+      <img th:if="${item.image == null}" th:src="@{../images/missing_image.png}">
+
+      <h2 class="object-title" th:text="${item.name}" > </h2>
+      <br>
+      <details class="datailsConteiner">
+        
+        <summary class="summary">Dettagli</summary>
+        <div class="object-details">
+          <p class="object-description" th:text="${item.description}"></p>
+          <p class="object-date" th:text="${item.date}"></p>
+          <p class="object-number" th:text="${item.number}"></p>
+
+
+          <button id="modalModifica" th:data-id="${item.id}" th:data-name="${item.name}" th:data-image="${item.image}"
+            th:data-description="${item.description}" th:data-date="${item.date}" th:data-number="${item.number}"
+            onclick="editItem(this)">Modifica
+          </button>
+
+          <br>
+
+          <button id="delete" th:data-idDelete="${item.id}" onclick="deleteItem(this)">Elimina</button>
+
+          <!--<a th:href="|/deleteItem?id=${item.id}|">
+                    <button>Elimina</button>
+                  </a>-->
+
+        </div>
+      </details>
+    </li>
+  </ul>
+
+  <div id="deleteModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <span class="closeDelete">&times;</span>
+        <h2>Sei sicuro di eliminare l'oggetto?</h2>
+      </div>
+      <div class="modal-body">
+        <form id="formDelete" method="post" action="/deleteItem">
+          <input type="hidden" id="idDelete" name="id">
+          <button type="submit">Elimina</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- The Modal edit-->
+  <div id="myModalEdit" class="modal">
+
+    <!-- Modal content -->
+    <div class="modal-contentE">
+
+      <div class="modal-header">
+        <span class="closeEdit">&times;</span>
+        <h2>Modifica oggetto:</h2>
+      </div>
+
+      <div class="modal-body">
+        <form id="itemForm" method="post" action="/updateItem" style="color: aliceblue;">
+          <input type="hidden" id="idEdit" name="id">
+          <label for="name">Nome:</label>
+          <input type="text" id="nameEdit" name="name" required>
+          <label for="description">Descrizione:</label>
+          <textarea id="descriptionEdit" name="description"></textarea>
+          <label for="image">Immagine:</label>
+          <input type="text" id="imageEdit" name="image">
+          <label for="number">Numero:</label>
+          <input type="number" id="numberEdit" name="number" required>
+          <label for="date">Data</label>
+          <input type="date" id="dateEdit" name="date" required>
+          <button type="submit">Edit</button>
+        </form>
+      </div>
+
+    </div>
+  </div> <!--end modalEdit-->
+
+
+  <footer></footer>
+</body>
+
+</html>
